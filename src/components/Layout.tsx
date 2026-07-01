@@ -12,8 +12,18 @@ export default function Layout() {
             Brighten Div 10 Estimator
           </Link>
           <nav className="app-nav">
-            <Link to="/">Projects</Link>
-            <Link to="/labor-rules">Labor Rules</Link>
+            <div className="app-nav-group">
+              <span className="app-nav-label">Workflow</span>
+              <Link to="/">Projects</Link>
+            </div>
+            <span className="app-nav-divider" aria-hidden>
+              |
+            </span>
+            <div className="app-nav-group">
+              <span className="app-nav-label">Reference</span>
+              <Link to="/catalog">Catalog</Link>
+              <Link to="/labor-rules">Labor Rules</Link>
+            </div>
             {user && <span className="nav-user">{user.email}</span>}
             <button
               type="button"

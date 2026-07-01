@@ -58,9 +58,30 @@ export interface LaborRule {
   created_at: string
 }
 
+export interface LaborModifier {
+  id: string
+  modifier_code: string
+  modifier_name: string
+  modifier_type: string | null
+  labor_factor: number
+  description: string | null
+  active: boolean
+  created_at: string
+}
+
+export interface QuoteItemLaborModifier {
+  id: string
+  quote_item_id: string
+  labor_modifier_id: string
+  factor_override: number | null
+  created_at: string
+  labor_modifiers?: LaborModifier | null
+}
+
 export interface QuoteItem {
   id: string
   vendor_quote_id: string
+  catalog_item_id: string | null
   source_page: number | null
   line_number: number | null
   quantity: number
@@ -72,12 +93,21 @@ export interface QuoteItem {
   lead_time: string | null
   unit_cost: number | null
   extended_cost: number | null
+  product_family: string | null
+  labor_family_code: string | null
+  mount_type: string | null
+  finish_material: string | null
+  size_text: string | null
+  color: string | null
+  catalog_match_status: string | null
   labor_category_id: string | null
   labor_rule_id: string | null
   needs_review: boolean
   raw_text: string | null
   created_at: string
   updated_at: string
+  quote_item_labor_modifiers?: QuoteItemLaborModifier[]
+  labor_categories?: { category_name: string } | null
 }
 
 export interface EstimateVersion {
@@ -109,6 +139,8 @@ export interface EstimateLine {
   labor_rate: number
   labor_cost: number
   markup_percent: number
+  modifier_factor: number
+  labor_family_code: string | null
   total_price: number
   created_at: string
   quote_items?: QuoteItem | null
@@ -154,8 +186,15 @@ export type UpdateQuoteItemInput = Partial<
     | 'lead_time'
     | 'unit_cost'
     | 'extended_cost'
+    | 'product_family'
+    | 'labor_family_code'
+    | 'mount_type'
+    | 'finish_material'
+    | 'size_text'
+    | 'color'
     | 'labor_category_id'
     | 'labor_rule_id'
     | 'needs_review'
+    | 'raw_text'
   >
 >

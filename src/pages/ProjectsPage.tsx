@@ -1,10 +1,15 @@
 import { useEffect, useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
-import { createProject, getProjects } from '../lib/data'
+import { Link, useNavigate } from 'react-router-dom'
+import { createProject, getProjects, getProjectsWorkflowSummaries } from '../lib/data'
+import { formatSupabaseError } from '../lib/formatSupabaseError'
+import { summaryPhaseLabel, workflowPhasePath } from '../lib/workflow'
+import type { ProjectWorkflowSummary } from '../lib/workflow'
 import type { Project } from '../types/database'
 
 export default function ProjectsPage() {
+  const navigate = useNavigate()
   const [projects, setProjects] = useState<Project[]>([])
+  const [summaries, setSummaries] = useState<Map<string, ProjectWorkflowSummary>>(new Map())
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [projectName, setProjectName] = useState('')
@@ -16,9 +21,11 @@ export default function ProjectsPage() {
     setLoading(true)
     setError(null)
     try {
-      setProjects(await getProjects())
+      const projectData = await getProjects()
+      setProjects(projectData)
+      setSummaries(await getProjectsWorkflowSummaries(projectData.map((project) => project.id)))
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load projects')
+      setError(formatSupabaseError(err, 'Failed to load projects'))
     } finally {
       setLoading(false)
     }
@@ -35,7 +42,7 @@ export default function ProjectsPage() {
     setSubmitting(true)
     setError(null)
     try {
-      await createProject({
+      const project = await createProject({
         project_name: projectName.trim(),
         customer_name: customerName.trim() || null,
         location: location.trim() || null,
@@ -46,8 +53,9 @@ export default function ProjectsPage() {
       setCustomerName('')
       setLocation('')
       await loadProjects()
+      navigate(`/projects/${project.id}`)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create project')
+      setError(formatSupabaseError(err, 'Failed to create project'))
     } finally {
       setSubmitting(false)
     }
@@ -58,7 +66,10 @@ export default function ProjectsPage() {
       <header className="page-header">
         <div>
           <h1>Projects</h1>
-          <p className="muted">Create a project and attach vendor quotes for Div 10 estimating.</p>
+          <p className="muted">
+            Start a project, then follow the four-phase workflow: Setup → Review Lines → Labor Rules
+            → Estimate.
+          </p>
         </div>
       </header>
 
@@ -104,23 +115,50 @@ export default function ProjectsPage() {
                 <tr>
                   <th>Project</th>
                   <th>Customer</th>
-                  <th>Location</th>
-                  <th>Status</th>
+                  <th>Workflow</th>
+                  <th>Next step</th>
                   <th>Created</th>
                 </tr>
               </thead>
               <tbody>
-                {projects.map((project) => (
-                  <tr key={project.id}>
-                    <td>
-                      <Link to={`/projects/${project.id}`}>{project.project_name}</Link>
-                    </td>
-                    <td>{project.customer_name ?? '—'}</td>
-                    <td>{project.location ?? '—'}</td>
-                    <td>{project.status}</td>
-                    <td>{new Date(project.created_at).toLocaleDateString()}</td>
-                  </tr>
-                ))}
+                {projects.map((project) => {
+                  const summary = summaries.get(project.id)
+                  const nextHref = summary?.quoteId
+                    ? workflowPhasePath(summary.suggestedPhase, project.id, summary.quoteId)
+                    : `/projects/${project.id}`
+
+                  return (
+                    <tr key={project.id}>
+                      <td>
+                        <Link to={`/projects/${project.id}`}>{project.project_name}</Link>
+                      </td>
+                      <td>{project.customer_name ?? '—'}</td>
+                      <td>
+                        {summary ? (
+                          <span
+                            className={
+                              summary.hasEstimate
+                                ? 'workflow-badge workflow-badge-complete'
+                                : 'workflow-badge'
+                            }
+                          >
+                            {summary.phaseLabel}
+                          </span>
+                        ) : (
+                          '—'
+                        )}
+                      </td>
+                      <td>
+                        {summary ? (
+                          <Link to={nextHref}>{summaryPhaseLabel(summary)} →</Link>
+                        ) : (
+                          <Link to={`/projects/${project.id}`}>Open setup →</Link>
+                        )}
+                      </td>
+                      <td>{new Date(project.created_at).toLocaleDateString()}</td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>

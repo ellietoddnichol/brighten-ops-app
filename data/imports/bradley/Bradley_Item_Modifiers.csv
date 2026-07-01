@@ -1,0 +1,156 @@
+source_quote_number,quote_line_no,part_number,product_family,labor_family,modifier_sequence,modifier_code,modifier_type,app_use
+Q-234-5017-01,1,8120-001180,Grab Bar,DIV10_GRAB_BAR,1,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,1,8120-001180,Grab Bar,DIV10_GRAB_BAR,2,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,1,8120-001180,Grab Bar,DIV10_GRAB_BAR,3,LENGTH_18_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,1,8120-001180,Grab Bar,DIV10_GRAB_BAR,4,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,2,8120-001360,Grab Bar,DIV10_GRAB_BAR,1,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,2,8120-001360,Grab Bar,DIV10_GRAB_BAR,2,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,2,8120-001360,Grab Bar,DIV10_GRAB_BAR,3,LENGTH_36_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,2,8120-001360,Grab Bar,DIV10_GRAB_BAR,4,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,3,8120-001240,Grab Bar,DIV10_GRAB_BAR,1,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,3,8120-001240,Grab Bar,DIV10_GRAB_BAR,2,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,3,8120-001240,Grab Bar,DIV10_GRAB_BAR,3,LENGTH_24_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,3,8120-001240,Grab Bar,DIV10_GRAB_BAR,4,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,4,8120-001420,Grab Bar,DIV10_GRAB_BAR,1,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,4,8120-001420,Grab Bar,DIV10_GRAB_BAR,2,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,4,8120-001420,Grab Bar,DIV10_GRAB_BAR,3,LENGTH_42_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,4,8120-001420,Grab Bar,DIV10_GRAB_BAR,4,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,5,8122-001180,Grab Bar,DIV10_GRAB_BAR,1,TEXTURE_PEENED,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,5,8122-001180,Grab Bar,DIV10_GRAB_BAR,2,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,5,8122-001180,Grab Bar,DIV10_GRAB_BAR,3,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,5,8122-001180,Grab Bar,DIV10_GRAB_BAR,4,LENGTH_18_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,5,8122-001180,Grab Bar,DIV10_GRAB_BAR,5,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,6,8122-001240,Grab Bar,DIV10_GRAB_BAR,1,TEXTURE_PEENED,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,6,8122-001240,Grab Bar,DIV10_GRAB_BAR,2,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,6,8122-001240,Grab Bar,DIV10_GRAB_BAR,3,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,6,8122-001240,Grab Bar,DIV10_GRAB_BAR,4,LENGTH_24_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,6,8122-001240,Grab Bar,DIV10_GRAB_BAR,5,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,7,8122-001360,Grab Bar,DIV10_GRAB_BAR,1,TEXTURE_PEENED,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,7,8122-001360,Grab Bar,DIV10_GRAB_BAR,2,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,7,8122-001360,Grab Bar,DIV10_GRAB_BAR,3,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,7,8122-001360,Grab Bar,DIV10_GRAB_BAR,4,LENGTH_36_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,7,8122-001360,Grab Bar,DIV10_GRAB_BAR,5,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,8,8122-001420,Grab Bar,DIV10_GRAB_BAR,1,TEXTURE_PEENED,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,8,8122-001420,Grab Bar,DIV10_GRAB_BAR,2,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,8,8122-001420,Grab Bar,DIV10_GRAB_BAR,3,OD_1.5_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,8,8122-001420,Grab Bar,DIV10_GRAB_BAR,4,LENGTH_42_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,8,8122-001420,Grab Bar,DIV10_GRAB_BAR,5,DESIGN_CHANGE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,9,8320-001180,Grab Bar,DIV10_GRAB_BAR,1,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,9,8320-001180,Grab Bar,DIV10_GRAB_BAR,2,OD_1.25_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,9,8320-001180,Grab Bar,DIV10_GRAB_BAR,3,LENGTH_18_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,10,8320-001360,Grab Bar,DIV10_GRAB_BAR,1,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,10,8320-001360,Grab Bar,DIV10_GRAB_BAR,2,OD_1.25_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,10,8320-001360,Grab Bar,DIV10_GRAB_BAR,3,LENGTH_36_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,11,8320-001420,Grab Bar,DIV10_GRAB_BAR,1,MOUNT_CONCEALED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,11,8320-001420,Grab Bar,DIV10_GRAB_BAR,2,OD_1.25_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,11,8320-001420,Grab Bar,DIV10_GRAB_BAR,3,LENGTH_42_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,12,780-024360,Mirror,DIV10_MIRROR,1,FRAME_ANGLE,frame,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,12,780-024360,Mirror,DIV10_MIRROR,2,SIZE_24X36,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,13,780-018360,Mirror,DIV10_MIRROR,1,FRAME_ANGLE,frame,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,13,780-018360,Mirror,DIV10_MIRROR,2,SIZE_18X36,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,14,781-024360,Mirror,DIV10_MIRROR,1,FRAME_CHANNEL,frame,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,14,781-024360,Mirror,DIV10_MIRROR,2,SIZE_24X36,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,15,781-018360,Mirror,DIV10_MIRROR,1,FRAME_CHANNEL,frame,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,15,781-018360,Mirror,DIV10_MIRROR,2,SIZE_18X36,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,16,780-024480,Mirror,DIV10_MIRROR,1,FRAME_ANGLE,frame,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,16,780-024480,Mirror,DIV10_MIRROR,2,SIZE_24X48,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,17,781-024480,Mirror,DIV10_MIRROR,1,FRAME_CHANNEL,frame,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,17,781-024480,Mirror,DIV10_MIRROR,2,SIZE_24X48,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,18,5402-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,1,ACCESSORY_DISPENSER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,18,5402-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,18,5402-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,3,CAPACITY_DUAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,19,4722-15000,Feminine Hygiene Disposal,DIV10_DISPENSER,1,ACCESSORY_DISPOSAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,19,4722-15000,Feminine Hygiene Disposal,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,20,4781-11000,Feminine Hygiene Disposal,DIV10_DISPENSER,1,ACCESSORY_DISPOSAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,20,4781-11000,Feminine Hygiene Disposal,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,21,250-15000,Towel Dispenser,DIV10_DISPENSER,1,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,22,747-024360,Mirror,DIV10_MIRROR,1,FRAME_FRAMELESS,frame,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,22,747-024360,Mirror,DIV10_MIRROR,2,SIZE_24X36,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,23,2494-00000,Towel Dispenser,DIV10_DISPENSER,1,AUTOMATIC,operation,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,24,234-11000,Towel/Waste Combination Unit,DIV10_TOWEL_WASTE,1,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,24,234-11000,Towel/Waste Combination Unit,DIV10_TOWEL_WASTE,2,WASTE_12_GAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,25,234-00000,Towel/Waste Combination Unit,DIV10_TOWEL_WASTE,1,MOUNT_RECESSED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,25,234-00000,Towel/Waste Combination Unit,DIV10_TOWEL_WASTE,2,WASTE_12_GAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,26,234-10000,Towel/Waste Combination Unit,DIV10_TOWEL_WASTE,1,MOUNT_SEMI_RECESSED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,26,234-10000,Towel/Waste Combination Unit,DIV10_TOWEL_WASTE,2,WASTE_12_GAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,27,6315-KT000,Soap / Sanitizer Dispenser,DIV10_DISPENSER,1,SENSOR,operation,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,28,6563-00000,Soap / Sanitizer Dispenser,DIV10_DISPENSER,1,MANUAL_PUSH,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,28,6563-00000,Soap / Sanitizer Dispenser,DIV10_DISPENSER,2,CAPACITY_40_OZ,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,28,6563-00000,Soap / Sanitizer Dispenser,DIV10_DISPENSER,3,MOUNT_PUSH_IN,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,29,6A03-11000,Soap / Sanitizer Dispenser,DIV10_DISPENSER,1,AUTOMATIC,operation,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,29,6A03-11000,Soap / Sanitizer Dispenser,DIV10_DISPENSER,2,CAPACITY_27_OZ,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,30,6542-00000,Soap / Sanitizer Dispenser,DIV10_DISPENSER,1,MOUNT_WALL_MOUNT,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,31,5054-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,1,ACCESSORY_DISPENSER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,31,5054-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,31,5054-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,3,CAPACITY_SINGLE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,32,5224-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,1,ACCESSORY_DISPENSER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,32,5224-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,32,5224-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,3,CAPACITY_DUAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,33,5425-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,1,ACCESSORY_DISPENSER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,33,5425-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,33,5425-00000,Toilet Tissue Dispenser,DIV10_DISPENSER,3,CAPACITY_DUAL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,34,5831-00000,Seat Cover Dispenser,DIV10_DISPENSER,1,ACCESSORY_SEAT_COVER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,34,5831-00000,Seat Cover Dispenser,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,35,583-00000,Seat Cover Dispenser,DIV10_DISPENSER,1,ACCESSORY_SEAT_COVER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,35,583-00000,Seat Cover Dispenser,DIV10_DISPENSER,2,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,36,407-45000,Napkin/Tampon Vendor,DIV10_RECESSED_DISPENSER,1,RECESSED_UNIT,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,36,407-45000,Napkin/Tampon Vendor,DIV10_RECESSED_DISPENSER,2,COIN_VENDOR,operation,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,37,962-00000,Baby Changing Station,DIV10_BABY_CHANGER,1,MOUNT_RECESSED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,37,962-00000,Baby Changing Station,DIV10_BABY_CHANGER,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,37,962-00000,Baby Changing Station,DIV10_BABY_CHANGER,3,HEAVY_OR_STRUCTURAL_ANCHORING,install_complexity,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,38,962-11000,Baby Changing Station,DIV10_BABY_CHANGER,1,MOUNT_SURFACE,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,38,962-11000,Baby Changing Station,DIV10_BABY_CHANGER,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,38,962-11000,Baby Changing Station,DIV10_BABY_CHANGER,3,HEAVY_OR_STRUCTURAL_ANCHORING,install_complexity,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,39,963-00000,Baby Changing Station,DIV10_BABY_CHANGER,1,COLOR_SPECKLED,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,39,963-00000,Baby Changing Station,DIV10_BABY_CHANGER,2,HEAVY_OR_STRUCTURAL_ANCHORING,install_complexity,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,40,9631-00000,Baby Changing Station,DIV10_BABY_CHANGER,1,COLOR_GRAY,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,40,9631-00000,Baby Changing Station,DIV10_BABY_CHANGER,2,HEAVY_OR_STRUCTURAL_ANCHORING,install_complexity,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,41,9632-00000,Baby Changing Station,DIV10_BABY_CHANGER,1,COLOR_CREAM,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,41,9632-00000,Baby Changing Station,DIV10_BABY_CHANGER,2,HEAVY_OR_STRUCTURAL_ANCHORING,install_complexity,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,42,9569-00000,Shower Seat,DIV10_SHOWER_SEAT,1,STRUCTURAL_ANCHORING,install_complexity,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,42,9569-00000,Shower Seat,DIV10_SHOWER_SEAT,2,REVERSIBLE,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,42,9569-00000,Shower Seat,DIV10_SHOWER_SEAT,3,MATERIAL_PHENOLIC,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,43,9533-60720,Shower Curtain,DIV10_SHOWER_CURTAIN,1,VINYL_CURTAIN,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,44,9533-42720,Shower Curtain,DIV10_SHOWER_CURTAIN,1,VINYL_CURTAIN,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,45,9537-48780,Shower Curtain,DIV10_SHOWER_CURTAIN,1,VINYL_CURTAIN,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,46,9537-60720,Shower Curtain,DIV10_SHOWER_CURTAIN,1,VINYL_CURTAIN,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,47,9531-04800,Shower Rod,DIV10_SHOWER_CURTAIN,1,ROD_INSTALL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,47,9531-04800,Shower Rod,DIV10_SHOWER_CURTAIN,2,LENGTH_48_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,47,9531-04800,Shower Rod,DIV10_SHOWER_CURTAIN,3,OD_1.25_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,48,9531-06000,Shower Rod,DIV10_SHOWER_CURTAIN,1,ROD_INSTALL,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,48,9531-06000,Shower Rod,DIV10_SHOWER_CURTAIN,2,LENGTH_60_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,48,9531-06000,Shower Rod,DIV10_SHOWER_CURTAIN,3,OD_1.25_IN,size,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,49,9540-00000,Shower Curtain Hook,DIV10_SHOWER_CURTAIN,1,HOOKS,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,49,9540-00000,Shower Curtain Hook,DIV10_SHOWER_CURTAIN,2,WITH_ROLLERS,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,50,9536-00000,Shower Curtain Hook,DIV10_SHOWER_CURTAIN,1,HOOKS,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,50,9536-00000,Shower Curtain Hook,DIV10_SHOWER_CURTAIN,2,SS_SPRING,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,51,9054-24000,Towel Bar,DIV10_WALL_ACCESSORY,1,SURFACE_MOUNT,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,51,9054-24000,Towel Bar,DIV10_WALL_ACCESSORY,2,FINISH_SATIN_SS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,52,9114-00000,Robe Hook / Door Hook,DIV10_WALL_ACCESSORY,1,SINGLE_HOOK,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,52,9114-00000,Robe Hook / Door Hook,DIV10_WALL_ACCESSORY,2,FINISH_SATIN_STAINLESS_STEEL,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,53,9124-00000,Robe Hook / Door Hook,DIV10_WALL_ACCESSORY,1,DOUBLE_HOOK,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,53,9124-00000,Robe Hook / Door Hook,DIV10_WALL_ACCESSORY,2,FINISH_SATIN_STAINLESS_STEEL,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,54,914-00000,Robe Hook / Door Hook,DIV10_WALL_ACCESSORY,1,DOUBLE_HOOK,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,54,914-00000,Robe Hook / Door Hook,DIV10_WALL_ACCESSORY,2,FINISH_CHROME_PLATED_BRASS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,55,915-00000,Robe Hook / Door Hook,DIV10_WALL_ACCESSORY,1,FINISH_CHROME_PLATED,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,56,9933-00000,Utility Shelf with Mop/Broom Holder,DIV10_CUSTODIAL_ACCESSORY,1,UTILITY_SHELF,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,56,9933-00000,Utility Shelf with Mop/Broom Holder,DIV10_CUSTODIAL_ACCESSORY,2,MOP_BROOM_HOLDER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,57,9934-00000,Utility Shelf with Mop/Broom Holder,DIV10_CUSTODIAL_ACCESSORY,1,UTILITY_SHELF,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,57,9934-00000,Utility Shelf with Mop/Broom Holder,DIV10_CUSTODIAL_ACCESSORY,2,MOP_BROOM_HOLDER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,58,9943-00000,Hat & Coat Rack,DIV10_WALL_ACCESSORY,1,SURFACE_MOUNT,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,58,9943-00000,Hat & Coat Rack,DIV10_WALL_ACCESSORY,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,59,9953-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,1,MOP_BROOM_HOLDER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,59,9953-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,60,9954-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,1,MOP_BROOM_HOLDER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,60,9954-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,61,9983-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,1,MOP_BROOM_HOLDER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,61,9983-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,62,9813-00000,Specimen Pass-Thru,DIV10_MEDICAL_SPECIALTY,1,PASS_THRU,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,62,9813-00000,Specimen Pass-Thru,DIV10_MEDICAL_SPECIALTY,2,STAINLESS,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,62,9813-00000,Specimen Pass-Thru,DIV10_MEDICAL_SPECIALTY,3,VERIFY_ROUGH_OPENING,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,63,9984-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,1,MOP_BROOM_HOLDER,general,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,63,9984-00000,Mop & Broom Holder,DIV10_CUSTODIAL_ACCESSORY,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,64,175-10000,Medicine Cabinet,DIV10_MEDICINE_CABINET,1,MOUNT_SEMI_RECESSED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,64,175-10000,Medicine Cabinet,DIV10_MEDICINE_CABINET,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,65,175-00000,Medicine Cabinet,DIV10_MEDICINE_CABINET,1,MOUNT_RECESSED,mount,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.
+Q-234-5017-01,65,175-00000,Medicine Cabinet,DIV10_MEDICINE_CABINET,2,FINISH_STAINLESS,finish_material_color,Use to select/apply labor rule modifier; values are suggested and should be tuned after field history.

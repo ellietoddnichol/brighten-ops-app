@@ -1,23 +1,42 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
+import BradleyEstimateValidation from '../components/BradleyEstimateValidation'
+import EstimateLinesTable from '../components/EstimateLinesTable'
 import EstimateTotalsCard from '../components/EstimateTotalsCard'
+import ProjectWorkflowStepper from '../components/ProjectWorkflowStepper'
+import WorkflowPhaseNav from '../components/WorkflowPhaseNav'
 import {
   buildEstimateFromQuote,
   getEstimateLines,
   getEstimateVersionsByProject,
   getProject,
+  getProjectWorkflowStatus,
+  getQuoteItemsByQuote,
   getVendorQuotesByProject,
 } from '../lib/data'
-import type { EstimateLine, EstimateVersion, Project, VendorQuote } from '../types/database'
+import {
+  BRADLEY_SPOT_CHECKS,
+  buildEstimateAudit,
+  isBradleyMilestoneQuote,
+  runBradleySpotChecks,
+} from '../lib/estimateAudit'
+import type { ProjectWorkflowStatus } from '../lib/workflow'
+import type { EstimateLine, EstimateVersion, Project, QuoteItem, VendorQuote } from '../types/database'
+
+function formatCurrency(value: number): string {
+  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+}
 
 export default function EstimateReviewPage() {
   const { projectId } = useParams<{ projectId: string }>()
   const [searchParams] = useSearchParams()
   const [project, setProject] = useState<Project | null>(null)
+  const [workflow, setWorkflow] = useState<ProjectWorkflowStatus | null>(null)
   const [quotes, setQuotes] = useState<VendorQuote[]>([])
   const [estimates, setEstimates] = useState<EstimateVersion[]>([])
   const [selectedEstimateId, setSelectedEstimateId] = useState<string>('')
   const [lines, setLines] = useState<EstimateLine[]>([])
+  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([])
   const [selectedQuoteId, setSelectedQuoteId] = useState(searchParams.get('quoteId') ?? '')
   const [laborRate, setLaborRate] = useState('85')
   const [materialMarkup, setMaterialMarkup] = useState('0')
@@ -25,6 +44,10 @@ export default function EstimateReviewPage() {
   const [loading, setLoading] = useState(true)
   const [building, setBuilding] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const selectedQuote = quotes.find((quote) => quote.id === selectedQuoteId) ?? null
+
+  const quoteIdFromUrl = searchParams.get('quoteId')
 
   async function loadProjectData() {
     if (!projectId) return
@@ -36,9 +59,14 @@ export default function EstimateReviewPage() {
         getVendorQuotesByProject(projectId),
         getEstimateVersionsByProject(projectId),
       ])
+      const initialQuoteId = quoteIdFromUrl ?? quoteData[0]?.id ?? ''
+      const workflowData = await getProjectWorkflowStatus(projectId, initialQuoteId || null)
+
       setProject(projectData)
       setQuotes(quoteData)
       setEstimates(estimateData)
+      setWorkflow(workflowData)
+      setSelectedQuoteId((current) => current || initialQuoteId)
       if (estimateData.length > 0) {
         setSelectedEstimateId(estimateData[0].id)
       }
@@ -51,7 +79,30 @@ export default function EstimateReviewPage() {
 
   useEffect(() => {
     void loadProjectData()
-  }, [projectId])
+  }, [projectId, quoteIdFromUrl])
+
+  useEffect(() => {
+    if (!projectId) return
+    void (async () => {
+      setWorkflow(await getProjectWorkflowStatus(projectId, selectedQuoteId || null))
+    })()
+  }, [projectId, selectedQuoteId])
+
+  useEffect(() => {
+    async function loadQuoteItems() {
+      if (!selectedQuoteId) {
+        setQuoteItems([])
+        return
+      }
+      try {
+        setQuoteItems(await getQuoteItemsByQuote(selectedQuoteId))
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load quote items for audit')
+      }
+    }
+
+    void loadQuoteItems()
+  }, [selectedQuoteId])
 
   useEffect(() => {
     async function loadLines() {
@@ -86,6 +137,8 @@ export default function EstimateReviewPage() {
       setEstimates((current) => [result.estimate, ...current])
       setSelectedEstimateId(result.estimate.id)
       setLines(result.lines)
+      setQuoteItems(await getQuoteItemsByQuote(selectedQuoteId))
+      setWorkflow(await getProjectWorkflowStatus(projectId, selectedQuoteId))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to build estimate')
     } finally {
@@ -94,6 +147,28 @@ export default function EstimateReviewPage() {
   }
 
   const selectedEstimate = estimates.find((estimate) => estimate.id === selectedEstimateId) ?? null
+  const showBradleyValidation = isBradleyMilestoneQuote(project?.project_name, selectedQuote)
+  const bradleyAudit = useMemo(
+    () =>
+      showBradleyValidation
+        ? buildEstimateAudit({
+            quote: selectedQuote,
+            quoteItems,
+            estimate: selectedEstimate,
+            lines,
+            bradleyExpected: true,
+          })
+        : null,
+    [showBradleyValidation, selectedQuote, quoteItems, selectedEstimate, lines],
+  )
+  const bradleySpotChecks = useMemo(
+    () => (showBradleyValidation ? runBradleySpotChecks(lines) : []),
+    [showBradleyValidation, lines],
+  )
+  const spotCheckPartNumbers = useMemo(
+    () => new Set(BRADLEY_SPOT_CHECKS.map((check) => check.partNumber)),
+    [],
+  )
 
   if (loading) {
     return (
@@ -103,7 +178,7 @@ export default function EstimateReviewPage() {
     )
   }
 
-  if (!project) {
+  if (!project || !workflow) {
     return (
       <div className="page">
         <div className="alert alert-error">Project not found.</div>
@@ -114,20 +189,38 @@ export default function EstimateReviewPage() {
 
   return (
     <div className="page">
+      <ProjectWorkflowStepper
+        projectId={project.id}
+        quoteId={selectedQuoteId || workflow.quoteId}
+        currentPhase="estimate"
+        status={workflow}
+      />
+
       <header className="page-header">
         <div>
           <p className="breadcrumb">
-            <Link to={`/projects/${project.id}`}>{project.project_name}</Link> / Estimate Review
+            <Link to={`/projects/${project.id}`}>{project.project_name}</Link> / Estimate
           </p>
-          <h1>Estimate Review</h1>
-          <p className="muted">Build material + labor totals from reviewed quote line items.</p>
+          <h1>Phase 4 — Estimate</h1>
+          <p className="muted">
+            Material from vendor quote · labor from rules + modifiers · markup on dollars only.
+          </p>
         </div>
+        {selectedQuoteId && (
+          <Link className="button-link" to={`/quotes/${selectedQuoteId}`}>
+            ← Back to Review Lines
+          </Link>
+        )}
       </header>
 
       {error && <div className="alert alert-error">{error}</div>}
 
       <section className="card">
-        <h2>Build Estimate</h2>
+        <h2>Rebuild Estimate</h2>
+        <p className="muted">
+          Creates a new estimate version from the current quote lines and latest labor rules.
+          Material comes from vendor quote pricing only.
+        </p>
         <form className="form-grid" onSubmit={handleBuildEstimate}>
           <label>
             Vendor Quote
@@ -176,10 +269,26 @@ export default function EstimateReviewPage() {
           </label>
           <div className="form-actions">
             <button type="submit" disabled={building || !selectedQuoteId}>
-              {building ? 'Building…' : 'Build Estimate'}
+              {building ? 'Rebuilding…' : 'Rebuild Estimate'}
             </button>
           </div>
         </form>
+        {selectedQuote && (
+          <p className="muted">
+            Source: {selectedQuote.vendors?.vendor_name ?? 'Vendor'} · Quote #
+            {selectedQuote.quote_number ?? '—'} · Quote material{' '}
+            {formatCurrency(selectedQuote.material_total ?? 0)}
+          </p>
+        )}
+        <p className="muted">
+          Changed labor rules?{' '}
+          <Link
+            to={`/labor-rules?projectId=${project.id}&quoteId=${selectedQuoteId || workflow.quoteId || ''}`}
+          >
+            Review labor rules
+          </Link>{' '}
+          then rebuild here.
+        </p>
       </section>
 
       {estimates.length > 0 && (
@@ -202,37 +311,31 @@ export default function EstimateReviewPage() {
 
       {selectedEstimate && <EstimateTotalsCard estimate={selectedEstimate} />}
 
+      {bradleyAudit && (
+        <BradleyEstimateValidation audit={bradleyAudit} spotChecks={bradleySpotChecks} />
+      )}
+
       {lines.length > 0 && (
         <section className="card">
           <h2>Estimate Lines</h2>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>Description</th>
-                  <th>Qty</th>
-                  <th>Material</th>
-                  <th>Labor Hrs</th>
-                  <th>Labor Cost</th>
-                  <th>Line Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lines.map((line) => (
-                  <tr key={line.id}>
-                    <td>{line.quote_items?.description ?? line.quote_item_id}</td>
-                    <td>{line.quantity}</td>
-                    <td>${line.material_cost.toFixed(2)}</td>
-                    <td>{line.total_labor_hours.toFixed(3)}</td>
-                    <td>${line.labor_cost.toFixed(2)}</td>
-                    <td>${line.total_price.toFixed(2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {showBradleyValidation && (
+            <p className="muted">
+              Spot-check sample parts are highlighted. Confirm labor family and base hours/unit per
+              line.
+            </p>
+          )}
+          <EstimateLinesTable
+            lines={lines}
+            highlightPartNumbers={showBradleyValidation ? spotCheckPartNumbers : undefined}
+          />
         </section>
       )}
+
+      <WorkflowPhaseNav
+        projectId={project.id}
+        quoteId={selectedQuoteId || workflow.quoteId}
+        currentPhase="estimate"
+      />
     </div>
   )
 }

@@ -4,6 +4,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import EstimateReviewPage from './pages/EstimateReviewPage'
 import LaborRulesPage from './pages/LaborRulesPage'
 import LoginPage from './pages/LoginPage'
+import ProductCatalogPage from './pages/ProductCatalogPage'
 import ProjectDetailPage from './pages/ProjectDetailPage'
 import ProjectsPage from './pages/ProjectsPage'
 import QuoteReviewPage from './pages/QuoteReviewPage'
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="projects/:projectId/estimate" element={<EstimateReviewPage />} />
             <Route path="quotes/:quoteId" element={<QuoteReviewPage />} />
             <Route path="labor-rules" element={<LaborRulesPage />} />
+            <Route path="catalog" element={<ProductCatalogPage />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

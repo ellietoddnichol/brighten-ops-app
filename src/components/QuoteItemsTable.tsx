@@ -1,5 +1,11 @@
-import { useState } from 'react'
-import { calcExtendedCost } from '../lib/estimateMath'
+import { useMemo, useState } from 'react'
+import { calcExtendedCost, formatModifierList, sumMaterialCost } from '../lib/estimateMath'
+import {
+  EMPTY_QUOTE_LINE_FACETS,
+  filterQuoteLines,
+  getQuoteLineFacetOptions,
+  type QuoteLineFacetState,
+} from '../lib/quoteLineFilters'
 import LaborCategorySelect from './LaborCategorySelect'
 import type { LaborCategory, LaborRule, QuoteItem, UpdateQuoteItemInput } from '../types/database'
 
@@ -25,6 +31,12 @@ export default function QuoteItemsTable({
 }: QuoteItemsTableProps) {
   const [savingId, setSavingId] = useState<string | null>(null)
   const [adding, setAdding] = useState(false)
+  const [query, setQuery] = useState('')
+  const [facets, setFacets] = useState<QuoteLineFacetState>(EMPTY_QUOTE_LINE_FACETS)
+
+  const facetOptions = useMemo(() => getQuoteLineFacetOptions(items), [items])
+  const filtered = useMemo(() => filterQuoteLines(items, query, facets), [items, query, facets])
+  const materialTotal = useMemo(() => sumMaterialCost(items), [items])
 
   async function handleFieldChange(
     item: QuoteItem,
@@ -91,31 +103,73 @@ export default function QuoteItemsTable({
         </button>
       </div>
 
+      <label>
+        Filter lines
+        <input
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Part #, description, family, mount, size…"
+        />
+      </label>
+
+      <div className="catalog-filters-grid quote-line-filters">
+        {(
+          [
+            ['productFamily', 'Product family', facetOptions.productFamily],
+            ['laborFamily', 'Labor family', facetOptions.laborFamily],
+            ['mountType', 'Mounting', facetOptions.mountType],
+            ['sizeText', 'Size', facetOptions.sizeText],
+            ['finishMaterial', 'Finish', facetOptions.finishMaterial],
+            ['color', 'Color', facetOptions.color],
+            ['matchStatus', 'Match', facetOptions.matchStatus],
+          ] as const
+        ).map(([key, label, options]) => (
+          <label key={key}>
+            {label}
+            <select
+              value={facets[key]}
+              onChange={(event) => setFacets((current) => ({ ...current, [key]: event.target.value }))}
+            >
+              <option value="">All</option>
+              {options.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </label>
+        ))}
+      </div>
+
       <div className="table-wrap">
-        <table className="data-table">
+        <table className="data-table quote-lines-table">
           <thead>
             <tr>
               <th>Qty</th>
-              <th>Unit</th>
               <th>Part #</th>
               <th>Description</th>
-              <th>Lead Time</th>
-              <th>Unit Cost</th>
-              <th>Ext Cost</th>
-              <th>Labor Category</th>
-              <th>Labor Rule</th>
-              <th>Needs Review</th>
+              <th>Unit $</th>
+              <th>Ext $</th>
+              <th>Family</th>
+              <th>Labor family</th>
+              <th>Mount</th>
+              <th>Size</th>
+              <th>Finish</th>
+              <th>Modifiers</th>
+              <th>Lead</th>
+              <th>Match</th>
+              <th>Labor</th>
             </tr>
           </thead>
           <tbody>
-            {items.length === 0 ? (
+            {filtered.length === 0 ? (
               <tr>
-                <td colSpan={10} className="empty-cell">
-                  No line items yet. Add your first Bradley quote line manually.
+                <td colSpan={14} className="empty-cell">
+                  No line items match your filters.
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
+              filtered.map((item) => (
                 <tr key={item.id} className={item.needs_review ? 'needs-review' : ''}>
                   <td>
                     <input
@@ -129,24 +183,7 @@ export default function QuoteItemsTable({
                       }
                     />
                   </td>
-                  <td>
-                    <input
-                      type="text"
-                      value={item.unit}
-                      disabled={savingId === item.id}
-                      onChange={(event) => void handleFieldChange(item, 'unit', event.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      value={item.part_number ?? ''}
-                      disabled={savingId === item.id}
-                      onChange={(event) =>
-                        void handleFieldChange(item, 'part_number', event.target.value)
-                      }
-                    />
-                  </td>
+                  <td className="part-cell">{item.part_number ?? '—'}</td>
                   <td>
                     <input
                       type="text"
@@ -154,16 +191,6 @@ export default function QuoteItemsTable({
                       disabled={savingId === item.id}
                       onChange={(event) =>
                         void handleFieldChange(item, 'description', event.target.value)
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      value={item.lead_time ?? ''}
-                      disabled={savingId === item.id}
-                      onChange={(event) =>
-                        void handleFieldChange(item, 'lead_time', event.target.value)
                       }
                     />
                   </td>
@@ -180,7 +207,17 @@ export default function QuoteItemsTable({
                     />
                   </td>
                   <td>{formatCurrency(item.extended_cost)}</td>
-                  <td colSpan={2}>
+                  <td>{item.product_family ?? '—'}</td>
+                  <td>{item.labor_family_code ?? '—'}</td>
+                  <td>{item.mount_type ?? '—'}</td>
+                  <td>{item.size_text ?? '—'}</td>
+                  <td>{item.finish_material ?? '—'}</td>
+                  <td className="modifier-cell">
+                    {formatModifierList(item.quote_item_labor_modifiers) || '—'}
+                  </td>
+                  <td>{item.lead_time ?? '—'}</td>
+                  <td>{item.catalog_match_status ?? '—'}</td>
+                  <td>
                     <LaborCategorySelect
                       categories={categories}
                       rules={rules}
@@ -192,22 +229,17 @@ export default function QuoteItemsTable({
                       }
                     />
                   </td>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={item.needs_review}
-                      disabled={savingId === item.id}
-                      onChange={(event) =>
-                        void handleFieldChange(item, 'needs_review', event.target.checked)
-                      }
-                    />
-                  </td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
       </div>
+
+      <footer className="quote-material-total">
+        <strong>Material total:</strong> {formatCurrency(materialTotal)}
+        <span className="muted"> · {items.length} lines · showing {filtered.length}</span>
+      </footer>
     </section>
   )
 }

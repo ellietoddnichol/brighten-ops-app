@@ -1,0 +1,192 @@
+-- Bradley import part C: quote line labor modifiers (one statement).
+-- IMPORTANT: Ctrl+A to select ALL, then Run.
+-- Run parts A and B first.
+
+delete from public.quote_item_labor_modifiers qim
+using public.quote_items qi, public.vendor_quotes vq, public.projects p
+where qim.quote_item_id = qi.id
+  and qi.vendor_quote_id = vq.id
+  and vq.project_id = p.id
+  and p.project_name = 'Bradley Pricing'
+  and vq.quote_number = 'Q-234-5017-01';
+
+with src as (
+  select * from (values
+  ('8120-001180', 'MOUNT_CONCEALED'),
+  ('8120-001180', 'OD_1.5_IN'),
+  ('8120-001180', 'LENGTH_18_IN'),
+  ('8120-001180', 'DESIGN_CHANGE'),
+  ('8120-001360', 'MOUNT_CONCEALED'),
+  ('8120-001360', 'OD_1.5_IN'),
+  ('8120-001360', 'LENGTH_36_IN'),
+  ('8120-001360', 'DESIGN_CHANGE'),
+  ('8120-001240', 'MOUNT_CONCEALED'),
+  ('8120-001240', 'OD_1.5_IN'),
+  ('8120-001240', 'LENGTH_24_IN'),
+  ('8120-001240', 'DESIGN_CHANGE'),
+  ('8120-001420', 'MOUNT_CONCEALED'),
+  ('8120-001420', 'OD_1.5_IN'),
+  ('8120-001420', 'LENGTH_42_IN'),
+  ('8120-001420', 'DESIGN_CHANGE'),
+  ('8122-001180', 'TEXTURE_PEENED'),
+  ('8122-001180', 'MOUNT_CONCEALED'),
+  ('8122-001180', 'OD_1.5_IN'),
+  ('8122-001180', 'LENGTH_18_IN'),
+  ('8122-001180', 'DESIGN_CHANGE'),
+  ('8122-001240', 'TEXTURE_PEENED'),
+  ('8122-001240', 'MOUNT_CONCEALED'),
+  ('8122-001240', 'OD_1.5_IN'),
+  ('8122-001240', 'LENGTH_24_IN'),
+  ('8122-001240', 'DESIGN_CHANGE'),
+  ('8122-001360', 'TEXTURE_PEENED'),
+  ('8122-001360', 'MOUNT_CONCEALED'),
+  ('8122-001360', 'OD_1.5_IN'),
+  ('8122-001360', 'LENGTH_36_IN'),
+  ('8122-001360', 'DESIGN_CHANGE'),
+  ('8122-001420', 'TEXTURE_PEENED'),
+  ('8122-001420', 'MOUNT_CONCEALED'),
+  ('8122-001420', 'OD_1.5_IN'),
+  ('8122-001420', 'LENGTH_42_IN'),
+  ('8122-001420', 'DESIGN_CHANGE'),
+  ('8320-001180', 'MOUNT_CONCEALED'),
+  ('8320-001180', 'OD_1.25_IN'),
+  ('8320-001180', 'LENGTH_18_IN'),
+  ('8320-001360', 'MOUNT_CONCEALED'),
+  ('8320-001360', 'OD_1.25_IN'),
+  ('8320-001360', 'LENGTH_36_IN'),
+  ('8320-001420', 'MOUNT_CONCEALED'),
+  ('8320-001420', 'OD_1.25_IN'),
+  ('8320-001420', 'LENGTH_42_IN'),
+  ('780-024360', 'FRAME_ANGLE'),
+  ('780-024360', 'SIZE_24X36'),
+  ('780-018360', 'FRAME_ANGLE'),
+  ('780-018360', 'SIZE_18X36'),
+  ('781-024360', 'FRAME_CHANNEL'),
+  ('781-024360', 'SIZE_24X36'),
+  ('781-018360', 'FRAME_CHANNEL'),
+  ('781-018360', 'SIZE_18X36'),
+  ('780-024480', 'FRAME_ANGLE'),
+  ('780-024480', 'SIZE_24X48'),
+  ('781-024480', 'FRAME_CHANNEL'),
+  ('781-024480', 'SIZE_24X48'),
+  ('5402-00000', 'ACCESSORY_DISPENSER'),
+  ('5402-00000', 'MOUNT_SURFACE'),
+  ('5402-00000', 'CAPACITY_DUAL'),
+  ('4722-15000', 'ACCESSORY_DISPOSAL'),
+  ('4722-15000', 'MOUNT_SURFACE'),
+  ('4781-11000', 'ACCESSORY_DISPOSAL'),
+  ('4781-11000', 'MOUNT_SURFACE'),
+  ('250-15000', 'MOUNT_SURFACE'),
+  ('747-024360', 'FRAME_FRAMELESS'),
+  ('747-024360', 'SIZE_24X36'),
+  ('2494-00000', 'AUTOMATIC'),
+  ('234-11000', 'MOUNT_SURFACE'),
+  ('234-11000', 'WASTE_12_GAL'),
+  ('234-00000', 'MOUNT_RECESSED'),
+  ('234-00000', 'WASTE_12_GAL'),
+  ('234-10000', 'MOUNT_SEMI_RECESSED'),
+  ('234-10000', 'WASTE_12_GAL'),
+  ('6315-KT000', 'SENSOR'),
+  ('6563-00000', 'MANUAL_PUSH'),
+  ('6563-00000', 'CAPACITY_40_OZ'),
+  ('6563-00000', 'MOUNT_PUSH_IN'),
+  ('6A03-11000', 'AUTOMATIC'),
+  ('6A03-11000', 'CAPACITY_27_OZ'),
+  ('6542-00000', 'MOUNT_WALL_MOUNT'),
+  ('5054-00000', 'ACCESSORY_DISPENSER'),
+  ('5054-00000', 'MOUNT_SURFACE'),
+  ('5054-00000', 'CAPACITY_SINGLE'),
+  ('5224-00000', 'ACCESSORY_DISPENSER'),
+  ('5224-00000', 'MOUNT_SURFACE'),
+  ('5224-00000', 'CAPACITY_DUAL'),
+  ('5425-00000', 'ACCESSORY_DISPENSER'),
+  ('5425-00000', 'MOUNT_SURFACE'),
+  ('5425-00000', 'CAPACITY_DUAL'),
+  ('5831-00000', 'ACCESSORY_SEAT_COVER'),
+  ('5831-00000', 'MOUNT_SURFACE'),
+  ('583-00000', 'ACCESSORY_SEAT_COVER'),
+  ('583-00000', 'MOUNT_SURFACE'),
+  ('407-45000', 'RECESSED_UNIT'),
+  ('407-45000', 'COIN_VENDOR'),
+  ('962-00000', 'MOUNT_RECESSED'),
+  ('962-00000', 'FINISH_STAINLESS'),
+  ('962-00000', 'HEAVY_OR_STRUCTURAL_ANCHORING'),
+  ('962-11000', 'MOUNT_SURFACE'),
+  ('962-11000', 'FINISH_STAINLESS'),
+  ('962-11000', 'HEAVY_OR_STRUCTURAL_ANCHORING'),
+  ('963-00000', 'COLOR_SPECKLED'),
+  ('963-00000', 'HEAVY_OR_STRUCTURAL_ANCHORING'),
+  ('9631-00000', 'COLOR_GRAY'),
+  ('9631-00000', 'HEAVY_OR_STRUCTURAL_ANCHORING'),
+  ('9632-00000', 'COLOR_CREAM'),
+  ('9632-00000', 'HEAVY_OR_STRUCTURAL_ANCHORING'),
+  ('9569-00000', 'STRUCTURAL_ANCHORING'),
+  ('9569-00000', 'REVERSIBLE'),
+  ('9569-00000', 'MATERIAL_PHENOLIC'),
+  ('9533-60720', 'VINYL_CURTAIN'),
+  ('9533-42720', 'VINYL_CURTAIN'),
+  ('9537-48780', 'VINYL_CURTAIN'),
+  ('9537-60720', 'VINYL_CURTAIN'),
+  ('9531-04800', 'ROD_INSTALL'),
+  ('9531-04800', 'LENGTH_48_IN'),
+  ('9531-04800', 'OD_1.25_IN'),
+  ('9531-06000', 'ROD_INSTALL'),
+  ('9531-06000', 'LENGTH_60_IN'),
+  ('9531-06000', 'OD_1.25_IN'),
+  ('9540-00000', 'HOOKS'),
+  ('9540-00000', 'WITH_ROLLERS'),
+  ('9536-00000', 'HOOKS'),
+  ('9536-00000', 'SS_SPRING'),
+  ('9054-24000', 'SURFACE_MOUNT'),
+  ('9054-24000', 'FINISH_SATIN_SS'),
+  ('9114-00000', 'SINGLE_HOOK'),
+  ('9114-00000', 'FINISH_SATIN_STAINLESS_STEEL'),
+  ('9124-00000', 'DOUBLE_HOOK'),
+  ('9124-00000', 'FINISH_SATIN_STAINLESS_STEEL'),
+  ('914-00000', 'DOUBLE_HOOK'),
+  ('914-00000', 'FINISH_CHROME_PLATED_BRASS'),
+  ('915-00000', 'FINISH_CHROME_PLATED'),
+  ('9933-00000', 'UTILITY_SHELF'),
+  ('9933-00000', 'MOP_BROOM_HOLDER'),
+  ('9934-00000', 'UTILITY_SHELF'),
+  ('9934-00000', 'MOP_BROOM_HOLDER'),
+  ('9943-00000', 'SURFACE_MOUNT'),
+  ('9943-00000', 'FINISH_STAINLESS'),
+  ('9953-00000', 'MOP_BROOM_HOLDER'),
+  ('9953-00000', 'FINISH_STAINLESS'),
+  ('9954-00000', 'MOP_BROOM_HOLDER'),
+  ('9954-00000', 'FINISH_STAINLESS'),
+  ('9983-00000', 'MOP_BROOM_HOLDER'),
+  ('9983-00000', 'FINISH_STAINLESS'),
+  ('9813-00000', 'PASS_THRU'),
+  ('9813-00000', 'STAINLESS'),
+  ('9813-00000', 'VERIFY_ROUGH_OPENING'),
+  ('9984-00000', 'MOP_BROOM_HOLDER'),
+  ('9984-00000', 'FINISH_STAINLESS'),
+  ('175-10000', 'MOUNT_SEMI_RECESSED'),
+  ('175-10000', 'FINISH_STAINLESS'),
+  ('175-00000', 'MOUNT_RECESSED'),
+  ('175-00000', 'FINISH_STAINLESS')
+  ) as t(part_number, modifier_code)
+)
+insert into public.quote_item_labor_modifiers (quote_item_id, labor_modifier_id)
+select qi.id, lm.id
+from src
+join public.quote_items qi on qi.part_number = src.part_number
+join public.vendor_quotes vq on vq.id = qi.vendor_quote_id
+join public.projects p on p.id = vq.project_id
+join public.labor_modifiers lm on lm.modifier_code = src.modifier_code
+where p.project_name = 'Bradley Pricing'
+  and vq.quote_number = 'Q-234-5017-01'
+on conflict (quote_item_id, labor_modifier_id) do nothing;
+
+-- Validation
+select
+  (select count(*) from public.quote_items qi
+     join public.vendor_quotes vq on vq.id = qi.vendor_quote_id
+     join public.projects p on p.id = vq.project_id
+    where p.project_name = 'Bradley Pricing' and vq.quote_number = 'Q-234-5017-01') as quote_items,
+  (select coalesce(sum(qi.extended_cost), 0) from public.quote_items qi
+     join public.vendor_quotes vq on vq.id = qi.vendor_quote_id
+     join public.projects p on p.id = vq.project_id
+    where p.project_name = 'Bradley Pricing' and vq.quote_number = 'Q-234-5017-01') as material_total;

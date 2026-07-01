@@ -1,4 +1,4 @@
-import type { EstimateLine, LaborRule, QuoteItem } from '../types/database'
+import type { EstimateLine, LaborRule, QuoteItem, QuoteItemLaborModifier } from '../types/database'
 
 export interface LineLaborInput {
   quantity: number
@@ -6,6 +6,7 @@ export interface LineLaborInput {
   difficultyMultiplier: number
   minimumHours: number
   laborRate: number
+  modifierFactor?: number
 }
 
 export interface LineLaborResult {
@@ -33,8 +34,25 @@ export function calcExtendedCost(quantity: number, unitCost: number | null): num
   return roundCurrency(quantity * unitCost)
 }
 
+export function calcModifierFactor(
+  itemModifiers: Pick<QuoteItemLaborModifier, 'factor_override' | 'labor_modifiers'>[] = [],
+  projectModifiers: Pick<QuoteItemLaborModifier, 'factor_override' | 'labor_modifiers'>[] = [],
+): number {
+  const all = [...itemModifiers, ...projectModifiers]
+  if (all.length === 0) return 1
+
+  return roundFactor(
+    all.reduce((product, row) => {
+      const factor = row.factor_override ?? row.labor_modifiers?.labor_factor ?? 1
+      return product * factor
+    }, 1),
+  )
+}
+
 export function calcLineLaborHours(input: LineLaborInput): number {
-  const rawHours = input.quantity * input.hoursPerUnit * input.difficultyMultiplier
+  const modifierFactor = input.modifierFactor ?? 1
+  const rawHours =
+    input.quantity * input.hoursPerUnit * input.difficultyMultiplier * modifierFactor
   return roundHours(Math.max(rawHours, input.minimumHours))
 }
 
@@ -53,6 +71,7 @@ export function buildEstimateLine(
   laborRule: LaborRule | null,
   laborRate: number,
   markupPercent: number,
+  modifierFactor = 1,
 ): Omit<EstimateLine, 'id' | 'estimate_version_id' | 'created_at'> {
   const materialCost = quoteItem.extended_cost ?? calcExtendedCost(quoteItem.quantity, quoteItem.unit_cost)
   const hoursPerUnit = laborRule?.hours_per_unit ?? 0
@@ -65,6 +84,7 @@ export function buildEstimateLine(
     difficultyMultiplier,
     minimumHours,
     laborRate,
+    modifierFactor,
   })
 
   const lineSubtotal = materialCost + laborCost
@@ -82,6 +102,8 @@ export function buildEstimateLine(
     labor_rate: laborRate,
     labor_cost: laborCost,
     markup_percent: markupPercent,
+    modifier_factor: modifierFactor,
+    labor_family_code: quoteItem.labor_family_code,
     total_price: totalPrice,
   }
 }
@@ -118,4 +140,17 @@ function roundCurrency(value: number): number {
 
 function roundHours(value: number): number {
   return Math.round(value * 1000) / 1000
+}
+
+function roundFactor(value: number): number {
+  return Math.round(value * 1000) / 1000
+}
+
+export function formatModifierList(
+  modifiers: Pick<QuoteItemLaborModifier, 'labor_modifiers'>[] = [],
+): string {
+  return modifiers
+    .map((row) => row.labor_modifiers?.modifier_code)
+    .filter(Boolean)
+    .join(', ')
 }
