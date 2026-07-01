@@ -688,3 +688,201 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+.proposal-export-page .proposal-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.proposal-back-link {
+  background: #fff;
+  color: #1d4ed8;
+  border-color: #d1d5db;
+}
+
+.proposal-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.proposal-checkbox-label input {
+  width: auto;
+}
+
+.proposal-notes-field {
+  grid-column: 1 / -1;
+}
+
+.proposal-preview {
+  padding: 2rem;
+}
+
+.proposal-document {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #111827;
+}
+
+.proposal-doc-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 2px solid #1d4ed8;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.proposal-company {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.proposal-document h1 {
+  margin: 0.35rem 0 0;
+  font-size: 1.65rem;
+}
+
+.proposal-subtitle {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+}
+
+.proposal-doc-meta {
+  text-align: right;
+  font-size: 0.92rem;
+}
+
+.proposal-doc-meta p {
+  margin: 0.2rem 0;
+}
+
+.proposal-doc-section {
+  margin-bottom: 1.25rem;
+}
+
+.proposal-doc-section h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  color: #374151;
+}
+
+.proposal-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  margin: 0;
+}
+
+.proposal-info-grid dt {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+.proposal-info-grid dd {
+  margin: 0.1rem 0 0;
+  font-weight: 600;
+}
+
+.proposal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.proposal-table th,
+.proposal-table td {
+  border: 1px solid #e5e7eb;
+  padding: 0.45rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.proposal-table th {
+  background: #f9fafb;
+}
+
+.proposal-summary {
+  margin: 0;
+  max-width: 320px;
+  margin-left: auto;
+}
+
+.proposal-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.proposal-summary dt,
+.proposal-summary dd {
+  margin: 0;
+}
+
+.proposal-summary-total {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  border-bottom: none;
+  padding-top: 0.5rem;
+}
+
+.proposal-notes {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+
+.proposal-doc-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .app-header,
+  .no-print {
+    display: none !important;
+  }
+
+  .app-main {
+    max-width: none;
+    padding: 0;
+  }
+
+  .proposal-preview {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .proposal-document {
+    max-width: none;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .proposal-table {
+    font-size: 0.8rem;
+  }
+
+  .proposal-table tr {
+    break-inside: avoid;
+  }
+}

@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage'
 import ProductCatalogPage from './pages/ProductCatalogPage'
 import ProjectDetailPage from './pages/ProjectDetailPage'
 import ProjectsPage from './pages/ProjectsPage'
+import ProposalExportPage from './pages/ProposalExportPage'
 import QuoteReviewPage from './pages/QuoteReviewPage'
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
             <Route index element={<ProjectsPage />} />
             <Route path="projects/:projectId" element={<ProjectDetailPage />} />
             <Route path="projects/:projectId/estimate" element={<EstimateReviewPage />} />
+            <Route path="projects/:projectId/proposal" element={<ProposalExportPage />} />
             <Route path="quotes/:quoteId" element={<QuoteReviewPage />} />
             <Route path="labor-rules" element={<LaborRulesPage />} />
             <Route path="catalog" element={<ProductCatalogPage />} />

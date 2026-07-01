@@ -206,11 +206,21 @@ export default function EstimateReviewPage() {
             Material from vendor quote · labor from rules + modifiers · markup on dollars only.
           </p>
         </div>
-        {selectedQuoteId && (
-          <Link className="button-link" to={`/quotes/${selectedQuoteId}`}>
-            ← Back to Review Lines
-          </Link>
-        )}
+        <div className="proposal-header-actions">
+          {selectedQuoteId && (
+            <Link className="button-link proposal-back-link" to={`/quotes/${selectedQuoteId}`}>
+              ← Back to Review Lines
+            </Link>
+          )}
+          {selectedEstimateId && (
+            <Link
+              className="button-link"
+              to={`/projects/${project.id}/proposal?estimateId=${selectedEstimateId}${selectedQuoteId ? `&quoteId=${selectedQuoteId}` : ''}`}
+            >
+              Export Proposal →
+            </Link>
+          )}
+        </div>
       </header>
 
       {error && <div className="alert alert-error">{error}</div>}
@@ -310,6 +320,22 @@ export default function EstimateReviewPage() {
       )}
 
       {selectedEstimate && <EstimateTotalsCard estimate={selectedEstimate} />}
+
+      {selectedEstimate && lines.length > 0 && (
+        <section className="card no-print">
+          <h2>Client proposal</h2>
+          <p className="muted">
+            Generate a printable proposal for your customer with materials, installation, and total
+            pricing. Internal labor hours and modifiers stay on the estimate page.
+          </p>
+          <Link
+            className="button-link"
+            to={`/projects/${project.id}/proposal?estimateId=${selectedEstimate.id}${selectedQuoteId ? `&quoteId=${selectedQuoteId}` : ''}`}
+          >
+            Open Proposal Export →
+          </Link>
+        </section>
+      )}
 
       {bradleyAudit && (
         <BradleyEstimateValidation audit={bradleyAudit} spotChecks={bradleySpotChecks} />
