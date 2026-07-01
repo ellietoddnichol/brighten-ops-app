@@ -14,11 +14,17 @@ import type { LaborRule } from '../types/database'
 
 interface CatalogItemPickerProps {
   quoteId: string
+  vendorName?: string | null
   rules: LaborRule[]
   onItemAdded: () => Promise<void>
 }
 
-export default function CatalogItemPicker({ quoteId, rules, onItemAdded }: CatalogItemPickerProps) {
+export default function CatalogItemPicker({
+  quoteId,
+  vendorName,
+  rules,
+  onItemAdded,
+}: CatalogItemPickerProps) {
   const [items, setItems] = useState<CatalogItem[]>([])
   const [query, setQuery] = useState('')
   const [facets, setFacets] = useState<CatalogFacetState>(EMPTY_FACETS)
@@ -32,7 +38,7 @@ export default function CatalogItemPicker({ quoteId, rules, onItemAdded }: Catal
       setLoading(true)
       setError(null)
       try {
-        setItems(await getCatalogItems())
+        setItems(await getCatalogItems(vendorName ?? undefined))
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load catalog')
       } finally {
@@ -41,7 +47,7 @@ export default function CatalogItemPicker({ quoteId, rules, onItemAdded }: Catal
     }
 
     void load()
-  }, [])
+  }, [vendorName])
 
   const facetOptions = useMemo(() => getFacetOptions(items, facets), [items, facets])
   const filtered = useMemo(

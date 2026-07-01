@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "import:bradley": "python scripts/import_bradley_quote.py"
+    "import:bradley": "python scripts/import_bradley_quote.py",
+    "import:quote": "tsx scripts/importVendorQuote.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",
@@ -22,6 +23,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "oxlint": "^1.71.0",
+    "tsx": "^4.21.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.1"
   }

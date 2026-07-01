@@ -6,6 +6,7 @@ import ProjectWorkflowStepper from '../components/ProjectWorkflowStepper'
 import QuoteItemsTable from '../components/QuoteItemsTable'
 import QuoteReadinessCard from '../components/QuoteReadinessCard'
 import WorkflowPhaseNav from '../components/WorkflowPhaseNav'
+import { isBradleyMilestoneQuote } from '../lib/estimateAudit'
 import {
   createQuoteItem,
   getLaborCategories,
@@ -103,7 +104,7 @@ export default function QuoteReviewPage() {
   }
 
   const materialTotal = sumMaterialCost(items)
-  const isBradleyQuote = quote.quote_number === 'Q-234-5017-01'
+  const isBradleyQuote = isBradleyMilestoneQuote(workflow.projectName, quote)
   const reviewReady = workflow.phases.review.complete
 
   return (
@@ -163,7 +164,14 @@ export default function QuoteReviewPage() {
 
       {isBradleyQuote && <BradleyMilestoneChecklist />}
 
-      {quoteId && <CatalogItemPicker quoteId={quoteId} rules={rules} onItemAdded={loadData} />}
+      {quoteId && (
+        <CatalogItemPicker
+          quoteId={quoteId}
+          vendorName={quote.vendors?.vendor_name}
+          rules={rules}
+          onItemAdded={loadData}
+        />
+      )}
 
       <QuoteItemsTable
         items={items}

@@ -1,0 +1,2 @@
+project_name,vendor_name,quote_number,quote_date,quote_expiration_date,part_number,description,quantity,unit,unit_price,extended_price,lead_time_days,product_family,labor_family,mounting,size,finish,color,modifiers,notes
+Example Project,Example Vendor Inc,Q-EXAMPLE-01,2026-06-24,2026-09-22,8120-001180,"Grab Bar, Concealed, 1-1/2 OD x 18",1,EA,17.20,17.20,3,Grab Bar,DIV10_GRAB_BAR,Concealed,18 in,,,MOUNT_CONCEALED;OD_1.5_IN;LENGTH_18_IN,Verify blocking and ADA location before install.

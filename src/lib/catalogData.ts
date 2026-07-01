@@ -15,7 +15,7 @@ export async function getCatalogLaborFamilies(): Promise<CatalogLaborFamily[]> {
 
 export async function searchCatalogItems(
   query: string,
-  vendorName = 'Bradley Company, LLC',
+  vendorName?: string,
   limit = 50,
 ): Promise<CatalogItem[]> {
   const trimmed = query.trim()
@@ -23,9 +23,12 @@ export async function searchCatalogItems(
     .from('catalog_items')
     .select('*, labor_categories(category_name)')
     .eq('active', true)
-    .eq('vendor_name', vendorName)
     .order('part_number', { ascending: true })
     .limit(limit)
+
+  if (vendorName) {
+    request = request.eq('vendor_name', vendorName)
+  }
 
   if (trimmed) {
     const pattern = `%${trimmed.replaceAll('%', '\\%')}%`
@@ -39,17 +42,21 @@ export async function searchCatalogItems(
   return data ?? []
 }
 
-export async function getCatalogItems(vendorName = 'Bradley Company, LLC'): Promise<CatalogItem[]> {
-  const { data, error } = await supabase
+export async function getCatalogItems(vendorName?: string): Promise<CatalogItem[]> {
+  let request = supabase
     .from('catalog_items')
     .select('*, labor_categories(category_name)')
     .eq('active', true)
-    .eq('vendor_name', vendorName)
     .order('product_family', { ascending: true })
     .order('mount_type', { ascending: true, nullsFirst: false })
     .order('size_text', { ascending: true, nullsFirst: false })
     .order('part_number', { ascending: true })
 
+  if (vendorName) {
+    request = request.eq('vendor_name', vendorName)
+  }
+
+  const { data, error } = await request
   if (error) throw error
   return data ?? []
 }
