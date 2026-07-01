@@ -1,0 +1,28 @@
+{
+  "name": "@brighten/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@brighten/database": "workspace:*",
+    "@brighten/shared": "workspace:*",
+    "@hono/node-server": "^1.11.1",
+    "@hono/zod-validator": "^0.8.0",
+    "hono": "^4.4.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

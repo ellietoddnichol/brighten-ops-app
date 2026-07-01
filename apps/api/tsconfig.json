@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@prisma/client": ["../../packages/database/node_modules/.prisma/client"],
+      "@brighten/shared": ["../../packages/shared/dist/index.d.ts"],
+      "@brighten/database": ["../../packages/database/dist/index.d.ts"]
+    }
+  },
+  "include": ["src"]
+}

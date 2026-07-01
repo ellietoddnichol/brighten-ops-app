@@ -1,0 +1,161 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+// SQLite does not support native enums; we store them as plain strings
+// and enforce valid values at the application layer.
+
+// ─── Employee ─────────────────────────────────────────────────────────────────
+
+model Employee {
+  id             String  @id @default(cuid())
+  employeeNumber String  @unique
+  firstName      String
+  lastName       String
+  email          String  @unique
+  /// ADMIN | DISPATCHER | FIELD_TECH
+  role           String
+  /// JSON array of certification strings
+  certifications String  @default("[]")
+  active         Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignments  JobAssignment[]
+  labourEntries LabourEntry[]
+
+  @@map("employees")
+}
+
+// ─── Job ──────────────────────────────────────────────────────────────────────
+
+model Job {
+  id           String  @id @default(cuid())
+  jobNumber    String  @unique
+  customerName String
+  siteAddress  String
+  city         String
+  state        String
+  zip          String
+  /// SCHEDULED | IN_PROGRESS | COMPLETE | CANCELLED
+  status       String  @default("SCHEDULED")
+  systemSizeKw Float
+  panelCount   Int
+  /// string | micro | hybrid
+  inverterType String
+  /// composition | tile | metal | flat
+  roofType     String
+  hasBattery   Boolean @default(false)
+  hasEvCharger Boolean @default(false)
+  hasMonitoring Boolean @default(false)
+
+  scheduledDate  DateTime?
+  completedDate  DateTime?
+  budgetedHours  Float?
+  notes          String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignments    JobAssignment[]
+  labourEntries  LabourEntry[]
+  calculatorRuns CalculatorRun[]
+
+  @@map("jobs")
+}
+
+// ─── JobAssignment ────────────────────────────────────────────────────────────
+
+model JobAssignment {
+  id         String   @id @default(cuid())
+  jobId      String
+  employeeId String
+  /// lead | helper | etc.
+  role       String?
+  assignedAt DateTime @default(now())
+
+  job      Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, employeeId])
+  @@map("job_assignments")
+}
+
+// ─── Rate ─────────────────────────────────────────────────────────────────────
+
+model Rate {
+  id                 String    @id @default(cuid())
+  /// ADMIN | DISPATCHER | FIELD_TECH
+  role               String
+  ratePerHour        Float
+  overtimeMultiplier Float     @default(1.5)
+  effectiveFrom      DateTime
+  effectiveTo        DateTime?
+
+  createdAt DateTime @default(now())
+
+  labourEntries LabourEntry[]
+
+  @@index([role, effectiveFrom])
+  @@map("rates")
+}
+
+// ─── LabourEntry ──────────────────────────────────────────────────────────────
+
+model LabourEntry {
+  id          String    @id @default(cuid())
+  jobId       String
+  employeeId  String
+  clockIn     DateTime
+  clockOut    DateTime?
+  hoursWorked Float?
+  rateId      String
+  notes       String?
+
+  createdAt DateTime @default(now())
+
+  job      Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  rate     Rate     @relation(fields: [rateId], references: [id])
+
+  @@index([jobId, employeeId])
+  @@map("labour_entries")
+}
+
+// ─── CalculatorRun ────────────────────────────────────────────────────────────
+
+model CalculatorRun {
+  id    String  @id @default(cuid())
+  jobId String?
+
+  systemSizeKw Float
+  panelCount   Int
+  /// composition | tile | metal | flat
+  roofType     String
+  hasBattery   Boolean @default(false)
+  hasEvCharger Boolean @default(false)
+  hasMonitoring Boolean @default(false)
+
+  estimatedLaborHours   Float
+  estimatedMaterialCost Float
+  estimatedLaborCost    Float
+  estimatedTotalCost    Float
+
+  createdAt DateTime @default(now())
+
+  job Job? @relation(fields: [jobId], references: [id], onDelete: SetNull)
+
+  @@map("calculator_runs")
+}

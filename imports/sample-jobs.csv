@@ -1,0 +1,11 @@
+jobNumber,customerName,siteAddress,city,state,zip,status,systemSizeKw,panelCount,inverterType,roofType,hasBattery,hasEvCharger,hasMonitoring,scheduledDate,completedDate,budgetedHours,notes
+JOB-2024-001,Sarah & Tom Mitchell,4821 Sunridge Way,Fresno,CA,93720,COMPLETE,8.5,22,micro,composition,false,false,true,2024-03-15,2024-03-16,36,Customer requested weekend install
+JOB-2024-002,Greenleaf Properties LLC,1902 Commerce Blvd,Bakersfield,CA,93308,COMPLETE,12.0,30,string,flat,true,false,true,2024-03-22,2024-03-24,55,Commercial property – flat ballasted racking
+JOB-2024-003,David Okonkwo,775 Palomar Dr,Visalia,CA,93291,COMPLETE,5.2,14,micro,tile,false,false,false,2024-04-02,2024-04-03,28,Tile roof required extra flashing
+JOB-2024-004,Rivera Family Trust,3310 Vineyard Ave,Tulare,CA,93274,COMPLETE,6.8,18,string,composition,false,true,true,2024-04-10,2024-04-11,32,Added level-2 EV charger in garage
+JOB-2024-005,Pinnacle Dental Group,5500 N Blackstone Ave,Fresno,CA,93710,IN_PROGRESS,15.6,40,string,flat,true,false,true,2024-05-01,,68,Medical office – UPS required for HVAC circuits
+JOB-2024-006,James & Carol Whitfield,88 Orchard Lane,Clovis,CA,93611,IN_PROGRESS,9.6,24,hybrid,composition,true,true,true,2024-05-08,,44,Customer upgraded to hybrid inverter for backup
+JOB-2024-007,Ana Flores,2277 Maple Ct,Hanford,CA,93230,SCHEDULED,4.8,12,micro,metal,false,false,false,2024-06-03,,22,Standing seam metal roof
+JOB-2024-008,Northpark HOA,1 Northpark Blvd,Fresno,CA,93720,SCHEDULED,24.0,60,string,flat,false,false,true,2024-06-17,,90,Community centre – dual inverter setup
+JOB-2024-009,Ben & Lisa Tran,6021 W Herndon Ave,Fresno,CA,93722,SCHEDULED,7.2,18,micro,composition,false,false,true,2024-07-01,,30,
+JOB-2024-010,Desert Sun Ranch,12450 Highway 33,Coalinga,CA,93210,CANCELLED,11.0,28,string,metal,false,false,false,,,48,Customer cancelled due to HOA denial

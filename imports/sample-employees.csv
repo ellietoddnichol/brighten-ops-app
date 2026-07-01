@@ -1,0 +1,11 @@
+employeeNumber,firstName,lastName,email,role,certifications,active
+EMP-001,Marcus,Rodriguez,m.rodriguez@brightensolar.com,FIELD_TECH,"NABCEP PV Installation Professional,OSHA10",true
+EMP-002,Tanya,Wells,t.wells@brightensolar.com,FIELD_TECH,"OSHA10",true
+EMP-003,Kevin,Park,k.park@brightensolar.com,FIELD_TECH,"NABCEP PV Installation Professional,OSHA30,NFPA 70E",true
+EMP-004,Priya,Sharma,p.sharma@brightensolar.com,DISPATCHER,"",true
+EMP-005,Jordan,Castillo,j.castillo@brightensolar.com,FIELD_TECH,"OSHA10,First Aid/CPR",true
+EMP-006,Aisha,Nkemelu,a.nkemelu@brightensolar.com,FIELD_TECH,"NABCEP PV Installation Professional,OSHA30",true
+EMP-007,Derek,Hoang,d.hoang@brightensolar.com,FIELD_TECH,"OSHA10",false
+EMP-008,Samantha,Lee,s.lee@brightensolar.com,ADMIN,"",true
+EMP-009,Carlos,Ibarra,c.ibarra@brightensolar.com,FIELD_TECH,"NABCEP PV System Inspector,OSHA10",true
+EMP-010,Rachel,Fonseca,r.fonseca@brightensolar.com,DISPATCHER,"",true
